@@ -1,4 +1,4 @@
-			WorkAhead
+# WorkAhead
 
 This is a library you can use to perform background operations.
 For example, when the user requests a page, this library can 
@@ -11,6 +11,4 @@ because it uses PCNTL functions.
 I didn't hear about PCNTL extension release for windows, but if 
 you did - you are welcome to try.
 
-If you have any question or suggestions, you are welcome to contact me:
-e-mail: Yuriy Zisin <devel@yzisin.com>
-   www: http://www.yzisin.com
+Check [Wiki](https://github.com/zysoft/WorkAhead/wiki) for details.
