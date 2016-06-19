@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<!-- Database connection parameters -->
+	<MySql>
+		<host>localhost</host>
+		<username>username</username>
+		<password>password</password>
+		<database>workAhead</database>
+		<table>workAheadStats</table>
+	</MySql>
+	
+	<!-- PHP settings -->
+	<Php>
+	 	<!--  How to call php interpreter (example: /bin/bash -l /usr/local/bin/php) -->
+		<CallName>php</CallName>
+	</Php>
+	
+	<!-- Site map for workAhead lookups -->
+	<!-- Page ids are on your favor, you will have to pass them to the library from PHP -->
+	<LookupMap>
+		<Page id="index.php">
+			<!-- References tell workAhead where to look for further user move -->
+			<Reference targetId="second.php"/>
+			<Reference targetId="third.php"/>
+		</Page>
+		<Page id="second.php">
+			<Reference targetId="index.php"/>
+			<Reference targetId="third.php"/>
+		</Page>		
+		<Page id="third.php">
+			<Reference targetId="index.php"/>
+			<Reference targetId="second.php"/>
+		</Page>		
+	</LookupMap>
+	
+	<Stats>
+		<!-- Autoload section tells what source should be used for config autoload -->
+		<Autoload>
+			<!-- You need filename for file storage mode. You can specify absolute file path as well -->
+			<Filename>stats.data</Filename>
+			<!-- Allowed options are: -->
+			<!-- FILE     - load/store data in file which name is specified above -->
+			<!-- DATABASE - load/store data in database -->
+			<!-- NONE 	 - Disable autosave/autoload -->
+			<Storage>DATABASE</Storage>
+		</Autoload>		
+	
+		<!-- Tells how probably potential user move should be to perform actions -->
+		<MinProbability>100</MinProbability>
+
+		<!-- Call section determines what script should be called and what parameters should be passed there -->
+		<!-- This call will be performed for each guessed user move -->
+		<!-- callDir is an initial working directory for the script. -->
+		<!-- You can specify a full path to the script in "script" attribute and some different path in callDir -->
+		<Call script="/var/www/html/workAhead/worker.php" callDir="/tmp" interpretPageIdAs="pageName">
+			<!-- These are parameters specification. You can use three scopes: -->
+			<!-- `internal` - function call (in example below, the result of session_id function will be passed as 'sid' parameter -->
+			<!-- `session`  - a value from $_SESSION array -->
+			<!-- `cookie`   - a value from $_COOKIE array -->
+			<Parameter scope="internal" name="session_id" interpretAs="sid"/>
+			<Parameter scope="session" name="userId" interpretAs="uid"/>
+			<Parameter scope="cookie" name="myCookie" interpretAs="locale"/>
+		</Call>	
+		
+		<!-- Log level. Logs via PHP error_log function. Be sure to redirect it -->
+		<Log>
+			<!-- Log level can be in range 0 (no logging) - 3 (most verbose) -->
+			<LogLevel>3</LogLevel>
+		</Log>
+		
+		<!-- Specifies how to lower stats values  -->
+		<!-- This has influence only on current visited page stats -->
+		<Lower>
+			<!-- Decrease stats on reaching this limit -->
+			<DecreaseOn>10000</DecreaseOn>
+			<!-- Divide stats by this value -->
+			<DivideBy>1000</DivideBy>
+		</Lower>
+
+	</Stats>
+	
+</Configuration>

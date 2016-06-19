@@ -1,0 +1,5 @@
+<area shape="rect" href="$classWorkAheadManager.html#5d2e71bedbc44fcb119bd923da9a199f" title="WorkAheadManager::getProbability" alt="" coords="281,6,537,32">
+<area shape="rect" href="$classWorkAheadManager.html#c2e30b6071d290a9243bf54613feea4f" title="WorkAheadManager::logOperation" alt="" coords="599,56,847,83">
+<area shape="rect" href="$classWorkAheadManager.html#f1d14fa9ddad6714cb69f16080b982b2" title="WorkAheadManager::saveStats" alt="" coords="293,107,525,134">
+<area shape="rect" href="$classWorkAheadManager.html#e1a7c67e8f8a401f0d5c2ad60e65700b" title="WorkAheadManager::saveMySqlStats" alt="" coords="587,107,859,134">
+<area shape="rect" href="$classWorkAheadManager.html#53a3f1e1fe9600b220b030846db742d6" title="WorkAheadManager::checkDbConnect" alt="" coords="907,107,1187,134">
